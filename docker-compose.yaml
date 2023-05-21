@@ -13,5 +13,4 @@ services:
     container_name: jenkins
     volumes:
       - jenkins_home:/var/jenkins_home
-      - ${DOCKER_PATH}:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
