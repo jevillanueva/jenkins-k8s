@@ -46,7 +46,7 @@ kubectl create -f service.yaml
 Otra forma de instanciar rapidamente Jenkins seria utilizando Docker Compose
 
 ```bash
-docker-compose up -d
+DOCKER_PATH=$(which docker) docker-compose up -d
 ```
 
 Utilizando traefik para la asignacion de dominio es necesario utilizar el archivo docker-compose.traefik.yaml y copiar las variables de entorno a la carpeta
