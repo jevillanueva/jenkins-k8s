@@ -8,7 +8,9 @@ networks:
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile
     privileged: true
     user: root
     expose:

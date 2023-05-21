@@ -43,10 +43,10 @@ kubectl create -f service.yaml
 
 # Utilizando Docker Compose para levantar Jenkins
 
-Otra forma de instanciar rapidamente Jenkins seria utilizando Docker Compose
+Otra forma de instanciar rapidamente Jenkins seria utilizando Docker Compose, se utiliza la version build ya que se tiene una imagen custom para instalar los binarios de docker y sus librerias requeridas
 
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Utilizando traefik para la asignacion de dominio es necesario utilizar el archivo docker-compose.traefik.yaml y copiar las variables de entorno a la carpeta
@@ -56,13 +56,5 @@ traefik.env a .env y llenar las variables de Traefik
 ```bash
 cp traefik.env .env
 #Edit .env
-docker-compose -f docker-compose.traefik.yaml up -d 
-```
-
-Posterior a levantar es necesario instalar los binarios de docker para poder usar el sock desde el contenedor
-
-```bash
-docker exec -it <contaienr id> bash
-curl https://get.docker.com > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
-sudo chmod 666 /var/run/docker.sock
+docker-compose -f docker-compose.traefik.yaml up -d --build
 ```
