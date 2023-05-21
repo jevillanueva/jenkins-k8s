@@ -1,0 +1,28 @@
+version: '3.8'
+volumes:
+  jenkins_home:
+
+networks:
+  web:
+    external: true
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    expose:
+      - 8080
+      - 50000
+    container_name: jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - $(which docker):/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.http.routers.${TRAEFIK_ROUTE}.rule=Host(${TRAEFIK_APP_DOMAIN})
+      - traefik.http.routers.${TRAEFIK_ROUTE}.tls=true
+      - traefik.http.routers.${TRAEFIK_ROUTE}.tls.certresolver=lets-encrypt
+      - traefik.port=${TRAEFIK_APP_PORT}
+    networks:
+      - web

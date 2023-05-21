@@ -48,3 +48,13 @@ Otra forma de instanciar rapidamente Jenkins seria utilizando Docker Compose
 ```bash
 docker-compose up -d
 ```
+
+Utilizando traefik para la asignacion de dominio es necesario utilizar el archivo docker-compose.traefik.yaml y copiar las variables de entorno a la carpeta
+
+traefik.env a .env y llenar las variables de Traefik
+
+```bash
+cp traefik.env .env
+#Edit .env
+docker-compose up -f docker-compose.traefik.yaml -d 
+```
