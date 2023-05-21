@@ -56,5 +56,5 @@ traefik.env a .env y llenar las variables de Traefik
 ```bash
 cp traefik.env .env
 #Edit .env
-docker-compose up -f docker-compose.traefik.yaml -d 
+DOCKER_PATH=$(which docker) docker-compose up -f docker-compose.traefik.yaml -d 
 ```
